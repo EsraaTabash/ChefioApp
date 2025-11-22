@@ -102,6 +102,7 @@ class _RecipeitemwidgetState extends State<Recipecardwidget> {
             widget.recipe.recipeName ?? "",
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
+            textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.black,
               fontSize: 13,

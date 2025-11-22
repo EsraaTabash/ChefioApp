@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_book_application/data/local/local_auth_service.dart';
-import 'package:recipe_book_application/presentaion/screens/AddEditRecipe.dart';
+import 'package:recipe_book_application/presentaion/screens/MyRecipes.dart';
 import 'package:recipe_book_application/presentaion/screens/allRecipes.dart';
 import 'package:recipe_book_application/presentaion/screens/favourite.dart';
 import 'package:recipe_book_application/presentaion/screens/home.dart';
@@ -24,7 +24,7 @@ class _MainnavState extends State<Mainnav> {
     List<Widget> screens = [
       Home(name: widget.name ?? "Guest"),
       Allrecipes(),
-      AddEditRecipe(),
+      Myrecipes(),
       Favourite(),
       Profile(),
     ];
@@ -79,13 +79,19 @@ class _MainnavState extends State<Mainnav> {
               label: "",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.receipt_rounded, color: Color(0xFFAFADAE)),
-              activeIcon: Icon(Icons.receipt_rounded, color: Colors.black),
+              icon: Icon(
+                Icons.restaurant_menu_rounded,
+                color: Color(0xFFAFADAE),
+              ),
+              activeIcon: Icon(
+                Icons.restaurant_menu_rounded,
+                color: Colors.black,
+              ),
               label: "",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.add_box_rounded, color: Color(0xFFAFADAE)),
-              activeIcon: Icon(Icons.add_box_rounded, color: Colors.black),
+              icon: Icon(Icons.menu_book_rounded, color: Color(0xFFAFADAE)),
+              activeIcon: Icon(Icons.menu_book_rounded, color: Colors.black),
               label: "",
             ),
             BottomNavigationBarItem(
@@ -154,14 +160,14 @@ class _MainnavState extends State<Mainnav> {
                 onTap: () => setState(() => index = 0),
               ),
               DrawerItemWidget(
-                icon: Icons.receipt_rounded,
+                icon: Icons.restaurant_menu_rounded,
                 label: "Recipes",
                 isSelected: index == 1,
                 onTap: () => setState(() => index = 1),
               ),
               DrawerItemWidget(
-                icon: Icons.add_box_rounded,
-                label: "Add / Edit",
+                icon: Icons.menu_book_rounded,
+                label: "My Recipes",
                 isSelected: index == 2,
                 onTap: () => setState(() => index = 2),
               ),

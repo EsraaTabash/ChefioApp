@@ -7,7 +7,7 @@ class Recipemodel {
   double? recipeHealthScore;
   int? recipeTime;
   String? recipeDescription;
-  int? aggregateLikes;
+  int? recipeAggregateLikes;
 
   Recipemodel({
     this.recipeId,
@@ -18,25 +18,26 @@ class Recipemodel {
     this.recipeHealthScore,
     this.recipeTime,
     this.recipeDescription,
-    this.aggregateLikes,
+    this.recipeAggregateLikes,
   });
 
   factory Recipemodel.fromJson(Map<String, dynamic> json) {
-    final dishTypes = json['dishTypes'] as List? ?? [];
+    //final dishTypes = json['dishTypes'] as List? ?? [];
     //final ingredients = json['extendedIngredients'] as List? ?? [];
 
     return Recipemodel(
-      recipeId: json['id'] ?? 0,
-      recipeName: json['title'] ?? "",
-      recipeImage: json['image'] ?? "",
-      recipeCategory: dishTypes.isNotEmpty
-          ? dishTypes.first.toString()
-          : "not specified",
+      recipeId: json['id'] as int,
+      recipeName: json['title'] as String,
+      recipeImage: json['image'] as String,
+      recipeCategory: json['dishTypes'] as String,
+      // recipeCategory: dishTypes.isNotEmpty
+      //     ? dishTypes.first.toString()
+      //     : "not specified",
       //recipeIngredientsCount: ingredients.length,
-      recipeHealthScore: json['healthScore'] ?? 0,
-      recipeTime: json['readyInMinutes'] ?? 0,
-      recipeDescription: json['summary'] ?? "",
-      aggregateLikes: json['aggregateLikes'] ?? 0,
+      recipeHealthScore: (json['healthScore'] as num).toDouble(),
+      recipeTime: json['readyInMinutes'] as int,
+      recipeDescription: json['summary'] as String,
+      recipeAggregateLikes: json['aggregateLikes'] as int,
     );
   }
 
@@ -45,12 +46,12 @@ class Recipemodel {
       'id': recipeId ?? 0,
       'title': recipeName ?? "",
       'image': recipeImage ?? "",
-      'dishTypes': [recipeCategory ?? "not specified"],
+      'dishTypes': recipeCategory ?? "not specified",
       //'extendedIngredients': List.filled(recipeIngredientsCount ?? 0, {}),
       'healthScore': recipeHealthScore ?? 0,
       'readyInMinutes': recipeTime ?? 0,
       'summary': recipeDescription ?? "",
-      'aggregateLikes': aggregateLikes ?? 0,
+      'aggregateLikes': recipeAggregateLikes ?? 0,
     };
   }
 }

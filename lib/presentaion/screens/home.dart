@@ -32,9 +32,12 @@ class _HomeState extends State<Home> {
     var recipes = rv.recipes ?? [];
     var isLoading = rv.isLoading;
     var errorMsg = rv.errorMsg;
-    final popularSorted = [
-      ...recipes,
-    ]..sort((a, b) => (b.aggregateLikes ?? 0).compareTo(a.aggregateLikes ?? 0));
+    final popularSorted = [...recipes]
+      ..sort(
+        (a, b) => (b.recipeAggregateLikes ?? 0).compareTo(
+          a.recipeAggregateLikes ?? 0,
+        ),
+      );
     final topPopular = popularSorted.take(5).toList();
     final healthySorted = [...recipes]
       ..sort(
@@ -310,12 +313,6 @@ class _HomeState extends State<Home> {
 
       _startAutoScroll();
     });
-  }
-
-  @override
-  void dispose() {
-    _autoController.dispose();
-    super.dispose();
   }
 
   // Future<void> fetchRecipes() async {
