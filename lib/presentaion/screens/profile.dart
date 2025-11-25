@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:recipe_book_application/cubit/auth_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:recipe_book_application/presentaion/screens/login.dart';
 import 'package:recipe_book_application/data/local/local_auth_service.dart';
@@ -244,7 +246,8 @@ class _ProfileState extends State<Profile> {
   }
 
   Future<void> _logout() async {
-    await LocalAuthService.logout();
+    // await LocalAuthService.logout();
+    await context.read<AuthCubit>().logout();
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (_) => Login()),
