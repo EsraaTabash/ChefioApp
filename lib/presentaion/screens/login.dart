@@ -57,7 +57,7 @@ class _LoginState extends State<Login> {
                       MaterialPageRoute(
                         builder: (context) {
                           return Mainnav(
-                            name: LocalAuthService.getUserName() ?? "Guest",
+                            name: state.user.displayName ?? "Guest",
                           );
                         },
                       ),

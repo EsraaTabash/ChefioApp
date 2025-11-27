@@ -24,11 +24,14 @@ class AuthCubit extends Cubit<AuthStates> {
     }
   }
 
-  signup(String email, String password) async {
+  signup(String email, String password, String name) async {
     emit(AuthLoadingState());
     try {
       var credentials = await FirebaseAuthService.signup(email, password);
-      emit(AuthSuccessState(credentials!.user!));
+      await credentials!.user!.updateDisplayName(name);
+      await credentials.user!.reload();
+      final user = FirebaseAuth.instance.currentUser;
+      emit(AuthSuccessState(user!));
     } catch (e) {
       emit(AuthErrorState(e.toString()));
       return;

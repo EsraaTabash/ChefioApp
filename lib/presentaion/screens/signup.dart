@@ -220,6 +220,7 @@ class _SignupState extends State<Signup> {
       context.read<AuthCubit>().signup(
         emailController.text.trim(),
         passwordController.text.trim(),
+        nameController.text.trim(),
       );
     }
   }
